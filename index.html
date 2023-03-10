@@ -9,9 +9,13 @@
     <script src="./todo.js" defer></script>
 </head>
 <body>
+        <label for="userId">User ID</label>
+        <input type="number" name="userId" id="userId" min="1" max="10"> 
     <button onclick="fetchTodos()">Fetch Todos</button>
     <button onclick="logTodos()">Log Todos</button>
     <button onclick="populateTodos()">Populate Todos</button>
+    <button onclick="filterTodo()">Filter Todos</button>
+
     <ol id="todo-list">
     <!-- LIs will go here -->
     </ol>
