@@ -46,11 +46,12 @@ const populateTodos = () => {
   // append LI element to  OL element
 };
 
-let storedFilter = []
+let storedFilter = [];
 
 const filterTodo = () => {
-    let ol = document.getElementById("todo-list");
-    ol.innerHTML= ""
+  let ol = document.getElementById("todo-list");
+  ol.innerHTML = "";
+  storedFilter = []
   let userId = document.getElementById("userId").value;
   let filterArray = arrayOfTodos.filter((todo) => todo.userId == userId);
 
@@ -60,21 +61,35 @@ const filterTodo = () => {
     const title = document.createTextNode(todo.title);
     li.appendChild(title);
     ol.appendChild(li);
-    storedFilter.push(todo)
+    storedFilter.push(todo);
     console.log(filterArray[index]);
   }
 };
 
-const completedTodos = () => {
-    for (let index = 0; index < storedFilter.length; index++) {
-        const todo = filterArray[index];
-        if(todo.completed == true){
-            const li = document.createElement("li");
-            const title = document.createTextNode(todo.title);
-            li.appendChild(title);
-            ol.appendChild(li);
-            storedFilter.push(todo)
-            console.log(filterArray[index]);
-        }
-}
-}
+const completedTodo = () => {
+  let ol = document.getElementById("todo-list");
+  ol.innerHTML = "";
+  for (let index = 0; index < storedFilter.length; index++) {
+    const todo = storedFilter[index];
+    if (todo.completed == true) {
+      const li = document.createElement("li");
+      const title = document.createTextNode(todo.title);
+      li.appendChild(title);
+      ol.appendChild(li);
+    }
+  }
+};
+
+const pendingTodo = () => {
+  let ol = document.getElementById("todo-list");
+  ol.innerHTML = "";
+  for (let index = 0; index < storedFilter.length; index++) {
+    const todo = storedFilter[index];
+    if (todo.completed == false) {
+      const li = document.createElement("li");
+      const title = document.createTextNode(todo.title);
+      li.appendChild(title);
+      ol.appendChild(li);
+    }
+  }
+};
